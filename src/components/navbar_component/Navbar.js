@@ -11,7 +11,7 @@ const NavBar = props => {
            <AppBar position="static">
                 <Toolbar>
                         <a href="https://developers.giphy.com/docs/api/#quick-start-guide">
-                            <img alt="giphy logo" src={logo}></img>
+                            <img className="logo" alt="giphy logo" src={logo}></img>
                         </a>
                     <Typography variant="h4" color="inherit">
                          Giphy App Test
