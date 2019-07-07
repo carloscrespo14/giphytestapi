@@ -1,22 +1,22 @@
 import { Config as config } from '../env/Config';
+import { async } from 'q';
 
 export class GiphyService {
     giphy = require('giphy-api')(config.api_key);
    
     trending() {
-        return new Promise((resolve, reject) => {
+        return new Promise(async (resolve, reject) => {
             this.giphy.trending({limit: 25, rating: 'g', fmt: 'json'}, 
             async (err, res) => {
                 const response = await res.data;
                 if (err) {reject(err)}
-                resolve(response) ;
+                    await resolve(response) ;
             });
         })
     }
 
     search(keyword) {
         return new Promise((resolve, reject)=> {
-            console.log(keyword)
             if(keyword === undefined || keyword === null  || keyword === '') {
                 return;
             } else {
