@@ -20,15 +20,17 @@ export class App extends Component {
   }
 
   getSearch = async () => {
+    let searchArray = [];
     const giphyService = new GiphyService();
-    const searchArray = await giphyService.search(this.state.searchValue);
-    this.setState({searchingGif: searchArray});
+    searchArray = await giphyService.search(this.state.searchValue);
+    this.setState({searchingGif: searchArray.data});
   }
 
   async componentDidMount() {
+    let trendingArray = [];
     const giphyService = new GiphyService();
-    const trendingArray = await giphyService.trending();
-    this.setState({trendingGifs: trendingArray});
+    trendingArray = await giphyService.trending();
+    this.setState({trendingGifs: trendingArray.data});
   }
 
   render() {

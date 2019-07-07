@@ -1,5 +1,4 @@
 import { Config as config } from '../env/Config';
-import { async } from 'q';
 
 export class GiphyService {
     giphy = require('giphy-api')(config.api_key);
@@ -8,7 +7,7 @@ export class GiphyService {
         return new Promise(async (resolve, reject) => {
             this.giphy.trending({limit: 25, rating: 'g', fmt: 'json'}, 
             async (err, res) => {
-                const response = await res.data;
+                const response = await res;
                 if (err) {reject(err)}
                     await resolve(response) ;
             });
@@ -21,7 +20,7 @@ export class GiphyService {
                 return;
             } else {
                 this.giphy.search(keyword, async (err, res) => {
-                    const response = await res.data;
+                    const response = await res;
                     if (err) {reject(err)}
                         return resolve(response);
                 });
