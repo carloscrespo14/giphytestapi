@@ -6,8 +6,8 @@ export class GiphyService {
     trending() {
         return new Promise((resolve, reject) => {
             this.giphy.trending({limit: 25, rating: 'g', fmt: 'json'}, 
-            (err, res) => {
-                const response = res.data;
+            async (err, res) => {
+                const response = await res.data;
                 if (err) {reject(err)}
                 resolve(response) ;
             });
@@ -20,8 +20,8 @@ export class GiphyService {
             if(keyword === undefined || keyword === null  || keyword === '') {
                 return;
             } else {
-                this.giphy.search(keyword, function (err, res) {
-                    const response = res.data;
+                this.giphy.search(keyword, async (err, res) => {
+                    const response = await res.data;
                     if (err) {reject(err)}
                         return resolve(response);
                 });
