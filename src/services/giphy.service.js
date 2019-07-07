@@ -1,7 +1,7 @@
 import { Config as config } from '../env/Config';
 
 export class GiphyService {
-    giphy = require('giphy-api')(config.api_key);
+    giphy = require('giphy-api')({https: true, apiKey: config.api_key});
    
     trending() {
         return new Promise(async (resolve, reject) => {
